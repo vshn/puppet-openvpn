@@ -22,4 +22,7 @@ push "redirect-gateway ipv6"
 <% @route.each do |route| -%>
 push "route <%= route %>"
 <% end -%>
+<% @custom_options.each_pair do |key, value| -%>
+<%= key %> <%= value %>
+<% end -%>
 
