@@ -10,7 +10,8 @@
 # @param ifconfig IP configuration to push to the client.
 # @param ifconfig_ipv6 IPv6 configuration to push to the client.
 # @param dhcp_options DHCP options to push to the client.
-# @param redirect_gateway Redirect all traffic to gateway
+# @param redirect_gateway Redirect all IPv4 traffic to gateway
+# @param redirect_ipv6 Redirect all IPV6 traffic to gateway
 # @param ensure Sets the client specific configuration file status (present or absent)
 # @param manage_client_configs Manage dependencies on Openvpn::Client ressources
 #
@@ -32,6 +33,7 @@ define openvpn::client_specific_config (
   Optional[String[1]] $ifconfig_ipv6 = undef,
   Array[String[1]]  $dhcp_options    = [],
   Boolean $redirect_gateway          = false,
+  Boolean $redirect_ipv6             = false,
   Boolean $manage_client_configs     = true,
 ) {
   if $manage_client_configs {

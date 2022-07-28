@@ -16,6 +16,9 @@ push "dhcp-option <%= option %>"
 <% if @redirect_gateway -%>
 push "redirect-gateway def1"
 <% end -%>
+<% if @redirect_ipv6 -%>
+push "redirect-gateway ipv6"
+<% end -%>
 <% @route.each do |route| -%>
 push "route <%= route %>"
 <% end -%>
