@@ -86,6 +86,7 @@ define openvpn::ca (
     command  => "rsync -a --exclude vars ${openvpn::easyrsa_source} ${server_directory}/${name}/easy-rsa",
     provider => "shell",
     require  => File["${server_directory}/${name}"],
+    unless   => "diff -qr -x vars -x keys -x revoked -x 'openssl*.cnf' ${openvpn::easyrsa_source} ${server_directory}/${name}/easy-rsa",
   }
 
   file { "${server_directory}/${name}/easy-rsa/revoked":
