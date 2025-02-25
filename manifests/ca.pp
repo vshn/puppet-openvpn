@@ -173,6 +173,17 @@ define openvpn::ca (
         }
       }
 
+      if $facts['os']['distro']['codename'] in [ 'noble' ] {
+        file { "${server_directory}/${name}/easy-rsa/openssl-1.0.cnf":
+          ensure => link,
+          target => 'openssl-easyrsa.cnf',
+          before => Exec["initca ${name}"],
+        }
+        $_generate_batch = '--batch'
+      } else {
+        $_generate_batch = ''
+      }
+
       $_initca_environment = $dn_mode ? {
         'cn_only' => ["EASYRSA_REQ_CN=${common_name} CA"],
         default   => [],
@@ -199,7 +210,7 @@ define openvpn::ca (
       }
 
       exec { "generate server cert ${name}":
-        command  => "./easyrsa build-server-full '${common_name}' nopass",
+        command  => "./easyrsa ${_generate_batch} build-server-full '${common_name}' nopass",
         cwd      => "${server_directory}/${name}/easy-rsa",
         creates  => "${server_directory}/${name}/easy-rsa/keys/private/${common_name}.key",
         provider => 'shell',
