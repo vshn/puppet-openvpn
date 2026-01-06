@@ -4,6 +4,12 @@ All notable changes to this project will be documented in this file.
 Each new release typically also includes the latest modulesync defaults.
 These should not affect the functionality of the module.
 
+## vshn-v10.4.2
+
+**Changes**
+
+- Do not require clients to exist anymore in order to revoke them (VBBMS-430)
+
 ## [v10.3.0](https://github.com/voxpupuli/puppet-openvpn/tree/v10.3.0) (2022-08-24)
 
 [Full Changelog](https://github.com/voxpupuli/puppet-openvpn/compare/v10.2.1...v10.3.0)

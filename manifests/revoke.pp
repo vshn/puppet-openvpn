@@ -19,9 +19,6 @@ define openvpn::revoke (
   Openvpn::Server[$server]
   -> Openvpn::Revoke[$name]
 
-  Openvpn::Client[$name]
-  -> Openvpn::Revoke[$name]
-
   $server_directory = $openvpn::server_directory
 
   $revocation_command = $openvpn::easyrsa_version ? {
