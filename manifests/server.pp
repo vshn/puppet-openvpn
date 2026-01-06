@@ -448,7 +448,9 @@ define openvpn::server (
         "${server_directory}/${name}/download-configs",
       ]:
         ensure  => directory,
+        force   => true,
         mode    => '0750',
+        purge   => true,
         recurse => true,
     }
   } else {
